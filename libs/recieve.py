@@ -1,32 +1,6 @@
-import os
 import datetime
-import hashlib
-import random
-import numpy as np
-import pandas as pd
-from flask import Flask, request, jsonify
-from werkzeug.utils import secure_filename
-from werkzeug.datastructures import FileStorage
-from threading import Timer
-from pathlib import Path
+from flask import request, jsonify
 
-from libs import recieve
-from libs import render_html as rhtml
-
-app = Flask(__name__, template_folder='static')
-
-allowed_file = lambda filename: '.' in filename and filename.rsplit('.', 1)[1].lower() in {'txt', 'csv', 'xlsx'}
-
-def delete_file(path):
-    os.remove(path)
-
-@app.route('/')
-def hello_world():
-    return "hello"
-
-app.add_url_rule('/Dashboard', "dashboard", rhtml.dashboard)
-
-@app.route('/upload', methods=['POST'])
 def upload_file():
     # checking errors
     if 'file' not in request.files:
@@ -66,6 +40,3 @@ def upload_file():
 
     return jsonify({"error": "Allowed file types are txt, csv, xlsx"}), 400
 
-
-if __name__ == "__main__":
-    app.run(debug=True)
