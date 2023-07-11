@@ -4,7 +4,7 @@ import hashlib
 import random
 import numpy as np
 import pandas as pd
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import FileStorage
 from threading import Timer
@@ -23,6 +23,20 @@ def delete_file(path):
 @app.route('/')
 def hello_world():
     return "hello"
+
+@app.route('/scripts/<path:path>')
+def serveScript(path):
+    return send_from_directory('static/scripts', path)
+
+@app.route('/icons/<path:path>')
+def serveIcons(path):
+    return send_from_directory('static/icons', path)
+
+@app.route('/stylesheets/<path:path>')
+def serveStylesheets(path):
+    return send_from_directory('static/stylesheets', path)
+
+
 
 app.add_url_rule('/Dashboard', "dashboard", rhtml.dashboard)
 
