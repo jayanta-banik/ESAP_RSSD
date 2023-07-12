@@ -13,8 +13,8 @@
     display: inline-flex;
 }
 
-.bi-x-square:hover{
-	color: #e33593;
+.bi-x-square:hover {
+    color: #e33593;
 }
 
 .sidebar-fixed {
@@ -90,7 +90,7 @@
 
 /*.show {
     animation: opacity 0.5s ease 1s forwards;
-	opacity: 1;
+    opacity: 1;
 animation-delay: ;
 display: block;
 }*/
@@ -99,4 +99,20 @@ display: block;
 
 .mynavbar {
     height: 88px;
+}
+
+.highlight {
+    background-color: #1987548a;
+    border-color: black !important;
+
+}
+
+.droparea {
+    border: 1.5px dashed;
+    border-radius: 6px;
+    border-color: #1987548a;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center; /* Center the text */
 }

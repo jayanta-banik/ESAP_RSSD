@@ -45,37 +45,31 @@
                 <div class="card-group p-4 h-25">
                     <div class="card" style="flex: 5;">
                         <div class="card-body">
-                            <h5 class="card-title">Drag and drop here</h5>
-                            <div class="container py-5" style="border: 1px dashed black;border-radius: 6px;" id="dropZone">
-                                <div class="mb-3">
-                                    <center>
-                                        <p>Drop files or click to upload</p>
-                                    </center>
-                                    <!-- <label class="form-label">Drop files or click to upload</label> -->
-                                    <input type="file" class="form-control" id="fileInput" multiple accept=".csv,.tsv,.xls,.xlsx,.txt" hidden>
-                                </div>
+                            <h5 class="card-title mb-4 mt-2">Allowed File type: csv / txt</h5>
+                            <div class="container h-75 droparea" id="dropZone">
+                                <!-- <center> -->
+                                <p class="align-middle"> Drop files or click to upload</p>
+                                <!-- </center> -->
+                                <!-- <label class="form-label">Drop files or click to upload</label> -->
+                                <input type="file" class="form-control" id="fileInput" multiple accept=".csv,.tsv,.xls,.xlsx,.txt" hidden>
                             </div>
-                            <div>
-                                <center><button type="submit" id="addButton" class="btn btn-primary m-2">Upload</button></center>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" id="progressBar" role="progressbar" style="width: 50%; background: green;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">50%</div>
-                            </div>
-                            <div id="output" class="mt-3"></div>
                             <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
                         </div>
                     </div>
                     <div class="card" style="flex: 3;">
                         <div class="card-body">
-                            <h5 class="card-title">Uploaded files</h5>
-                            <p class="card-text">Files will come here...</p>
-                            <div class="card">
-                                <ul class="list-group list-group-flush" id="dynamicList">
-                                    <li class="list-group-item">An item <i class="bi bi-x-square  float-end" style="cursor: pointer;"></i></li>
-                                    <li class="list-group-item">A second item</li>
-                                    <li class="list-group-item">A third item</li>
-                                </ul>
+                            <h5 class="card-title mb-4 mt-2">Uploaded files</h5>
+                            <!-- <p class="card-text">Files will come here...</p> -->
+                            <div class="overflow-auto" style="height: 175px;">
+                                <div class="card overflow-auto">
+                                    <ul class="list-group list-group-flush " id="dynamicList">
+                                    </ul>
+                                </div>
                             </div>
+                            <div>
+                                <center><button type="submit" id="addButton" class="btn btn-primary m-2">Upload</button></center>
+                            </div>
+                            <div id="output" class="mt-3"></div>
                         </div>
                     </div>
                 </div>
@@ -86,45 +80,6 @@
         </div>
     </div>
     <script type="text/javascript">
-    var sidebar_element = document.getElementById("sidebar");
-    sidebar_element.addEventListener('mouseover', show_sidebar);
-
-    sidebar_element.addEventListener('mouseout', hide_sidebar);
-
-    function fix_sidebar() {
-
-
-        if (sidebar_element.classList.contains("sidebar-smooth")) {
-            sidebar_element.classList.remove("sidebar-smooth");
-            sidebar_element.classList.add("sidebar-fixed");
-            show_sidebar();
-            sidebar_element.removeEventListener('mouseout', hide_sidebar);
-            sidebar_element.removeEventListener('mouseover', show_sidebar);
-
-        } else {
-            sidebar_element.classList.remove("sidebar-fixed");
-            sidebar_element.classList.add("sidebar-smooth");
-            hide_sidebar();
-            sidebar_element.addEventListener('mouseout', hide_sidebar);
-            sidebar_element.addEventListener('mouseover', show_sidebar);
-        }
-
-    }
-
-    function show_sidebar() {
-        var sidebarss = document.getElementsByClassName('sidebar-summary');
-        for (var i = 0; i < sidebarss.length; i++) {
-            sidebarss[i].classList.add('show');
-        }
-    }
-
-    function hide_sidebar() {
-        var sidebarss = document.getElementsByClassName('sidebar-summary');
-        for (var i = 0; i < sidebarss.length; i++) {
-            sidebarss[i].classList.remove('show');
-        }
-    }
-
     document.getElementById('addButton').addEventListener('click', function() {
 
         var list = document.getElementById('dynamicList');
@@ -140,8 +95,8 @@
         deleteButton.innerHTML = '<i class="bi bi-x-square  float-end" style="cursor: pointer;"></i>';
         deleteButton.addEventListener('click', function(e) {
             list.removeChild(listItem);
+            // remove file from file object
         });
-
         listItem.appendChild(deleteButton);
 
         // Add the new list item to the list
@@ -149,6 +104,7 @@
 
     });
     </script>
+    <script src="/scripts/dashboard_sidebar_hover.js"></script>
     <script src="/scripts/ESAP_RSSD_script1.js"></script>
 </body>
 
