@@ -37,8 +37,9 @@ function unhighlight() {
 function displayFileNames(files) {
     var list = document.getElementById('dynamicList');
 
-    if (fileInput.multiple) {
+    if (! fileInput.multiple) {
         Array.from(list.children).forEach((name) => { list.removeChild(name) })
+    }
         Array.from(fileInput.files).forEach((file, index) => {
             var listItem = document.createElement('li');
             listItem.className = "list-group-item";
@@ -53,26 +54,6 @@ function displayFileNames(files) {
             // Add the new list item to the list
             list.appendChild(listItem);
         });
-
-    }
-
-
-
-    // for single file uncomment
-    // Array.from(files).forEach((file, index) => {
-    //     var listItem = document.createElement('li');
-    //     listItem.className = "list-group-item";
-    //     listItem.id = 'file_${index}';
-    //     listItem.textContent = file.name;
-    //     var deleteButton = document.createElement('span');
-    //     deleteButton.innerHTML = '<i class="bi bi-x-square  float-end" style="cursor: pointer;"></i>';
-    //     deleteButton.addEventListener('click', function(e) {
-    //         list.removeChild(listItem);
-    //     });
-    //     listItem.appendChild(deleteButton);
-    //     // Add the new list item to the list
-    //     list.appendChild(listItem);
-    // });
 }
 
 function handleFileSelection(event) {
@@ -93,11 +74,11 @@ function handleDrop(event) {
     const dt = event.dataTransfer;
     const files = dt.files;
     // Update the hidden input with the dropped files
-    if fileInput.multiple{
-      
-    fileInput.files = files;
+    if (fileInput.multiple) {
+
+        fileInput.files = files;
     }
-    
+
     displayFileNames(files);
 
 }
